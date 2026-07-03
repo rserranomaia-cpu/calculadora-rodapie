@@ -283,7 +283,43 @@ Calculadora Profesional de Rodapié
  </div>
 
  </main>
+<script>
 
+const m2=document.getElementById("m2");
+const barra=document.getElementById("barra");
+const merma=document.getElementById("merma");
+
+const superficie=document.getElementById("superficie");
+const rodapie=document.getElementById("rodapie");
+const barras=document.getElementById("barras");
+
+function calcular(){
+
+let metros=parseFloat(m2.value)||0;
+
+let coef=0.80;
+
+let longitud=parseFloat(barra.value);
+
+let desperdicio=1+(parseFloat(merma.value)/100);
+
+let ml=(metros*coef)*desperdicio;
+
+let num=Math.ceil(ml/longitud);
+
+superficie.textContent=metros.toFixed(2)+" m²";
+rodapie.textContent=ml.toFixed(2)+" ml";
+barras.textContent=num;
+
+}
+
+m2.addEventListener("input",calcular);
+
+barra.addEventListener("change",calcular);
+
+merma.addEventListener("change",calcular);
+
+</script>
 
 
 
