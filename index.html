@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Calculadora de Rodapié</title>
+
+<style>
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:#f3f5f7;
+margin:0;
+padding:40px;
+}
+
+.contenedor{
+
+max-width:600px;
+margin:auto;
+background:white;
+padding:35px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(0,0,0,.15);
+
+}
+
+h1{
+
+text-align:center;
+color:#1d4f91;
+
+}
+
+label{
+
+display:block;
+margin-top:20px;
+font-weight:bold;
+
+}
+
+input,select{
+
+width:100%;
+padding:12px;
+font-size:18px;
+border-radius:8px;
+border:1px solid #ccc;
+box-sizing:border-box;
+
+}
+
+.resultado{
+
+margin-top:30px;
+padding:20px;
+background:#eef6ff;
+border-radius:10px;
+
+}
+
+.numero{
+
+font-size:34px;
+font-weight:bold;
+color:#1d4f91;
+
+}
+
+button{
+
+margin-top:25px;
+width:100%;
+padding:14px;
+font-size:18px;
+background:#1d4f91;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#153b6d;
+
+}
+
+.nota{
+
+margin-top:25px;
+font-size:14px;
+color:#666;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<h1>Calculadora de Rodapié</h1>
+
+<label>Metros cuadrados de suelo</label>
+
+<input
+type="number"
+id="metros"
+placeholder="Ejemplo: 144"
+oninput="calcular()">
+
+<label>Tipo de vivienda</label>
+
+<select id="tipo" onchange="calcular()">
+
+<option value="0.80">Diáfana</option>
+
+<option value="0.90" selected>Estándar</option>
+
+<option value="1.00">Muy compartimentada</option>
+
+</select>
+
+<label>Longitud de cada barra</label>
+
+<select id="barra" onchange="calcular()">
+
+<option value="2.20">2,20 metros</option>
+
+<option value="2.40">2,40 metros</option>
+
+<option value="2.50">2,50 metros</option>
+
+</select>
+
+<div class="resultado">
+
+<p>Rodapié recomendado</p>
+
+<div class="numero" id="ml">0 ml</div>
+
+<p>Barras necesarias</p>
+
+<div class="numero" id="barras">0</div>
+
+</div>
+
+<button onclick="limpiar()">Limpiar</button>
+
+<div class="nota">
+
+El cálculo es orientativo. Puede variar según la distribución de la vivienda, número de puertas, armarios empotrados y otros elementos constructivos.
+
+</div>
+
+</div>
+
+<script>
+
+function calcular(){
+
+let m2=parseFloat(document.getElementById("metros").value);
+
+if(isNaN(m2)){
+
+document.getElementById("ml").innerHTML="0 ml";
+document.getElementById("barras").innerHTML="0";
+return;
+
+}
+
+let coef=parseFloat(document.getElementById("tipo").value);
+
+let barra=parseFloat(document.getElementById("barra").value);
+
+let ml=Math.ceil(m2*coef);
+
+let barras=Math.ceil(ml/barra);
+
+document.getElementById("ml").innerHTML=ml+" ml";
+
+document.getElementById("barras").innerHTML=barras;
+
+}
+
+function limpiar(){
+
+document.getElementById("metros").value="";
+document.getElementById("ml").innerHTML="0 ml";
+document.getElementById("barras").innerHTML="0";
+
+}
+
+</script>
+
+</body>
+</html>
